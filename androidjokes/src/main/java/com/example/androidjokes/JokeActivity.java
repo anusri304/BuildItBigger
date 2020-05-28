@@ -20,7 +20,7 @@ public class JokeActivity extends AppCompatActivity {
         if(intent !=null) {
             String joke = intent.getString(ApplicationConstants.JOKE);
             textView = (TextView) findViewById(R.id.textView);
-            textView.setText(joke + "hello");
+            textView.setText(joke);
         }
     }
 }
