@@ -20,7 +20,7 @@ import static androidx.test.espresso.matcher.ViewMatchers.withText;
 
 
 @RunWith(AndroidJUnit4.class)
-public class AsyncTest extends TestCase {
+public class AsyncTest  {
 
     @Rule
     public ActivityTestRule<MainActivity> mActivityTestRule = new ActivityTestRule<>(MainActivity.class);
@@ -34,10 +34,10 @@ public class AsyncTest extends TestCase {
 
     @Test
     public void clickRecyclerViewItem_AndCheckIntent() throws Exception {
-//        onView((withId(R.id.button_joke)))
-//                .perform(click());
-//
-//        onView((withId(R.id.textView))).check(matches(withText("This is totally a funny joke")));joke
+        onView((withId(R.id.button_joke)))
+                .perform(click());
+
+        onView((withId(R.id.textView))).check(matches(withText("This is totally a funny joke")));
     }
 
     @After
