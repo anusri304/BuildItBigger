@@ -11,18 +11,13 @@ import android.view.View;
 import android.widget.Toast;
 import com.example.androidjokes.utils.ApplicationConstants;
 import com.example.gradle.jokes.Joker;
+
 public class MainActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-       // setContentView(R.layout.activity_main);
-
-        new EndpointsAsyncTask().execute(new Pair<Context, String>(this, "Manfred"));
-
-//       Intent intent = new Intent(this,com.example.androidjokes.JokeActivity.class);
-//       intent.putExtra(ApplicationConstants.JOKE,new Joker().getJoke());
-//       startActivity(intent);
+        setContentView(R.layout.activity_main);
     }
 
 
@@ -46,5 +41,15 @@ public class MainActivity extends AppCompatActivity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    public void tellJoke(View view) {
+        new EndpointsAsyncTask().execute(new Pair<Context, String>(this, "Manfred"));
+
+
+
+//       Intent intent = new Intent(this,com.example.androidjokes.JokeActivity.class);
+//       intent.putExtra(ApplicationConstants.JOKE,new Joker().getJoke());
+//       startActivity(intent);
     }
 }
