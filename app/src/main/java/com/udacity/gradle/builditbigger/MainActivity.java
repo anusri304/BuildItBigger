@@ -2,13 +2,17 @@ package com.udacity.gradle.builditbigger;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.test.espresso.idling.CountingIdlingResource;
 import com.example.androidjokes.utils.ApplicationConstants;
 
 public class MainActivity extends AppCompatActivity {
+
+
+    CountingIdlingResource espressoTestIdlingResource = new CountingIdlingResource(ApplicationConstants.NETWORK_CALL);
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,5 +59,9 @@ public class MainActivity extends AppCompatActivity {
 //       Intent intent = new Intent(this,com.example.androidjokes.JokeActivity.class);
 //       intent.putExtra(ApplicationConstants.JOKE,new Joker().getJoke());
 //       startActivity(intent);
+    }
+
+    public CountingIdlingResource getEspressoTestIdlingResource() {
+        return espressoTestIdlingResource;
     }
 }
