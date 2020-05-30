@@ -46,6 +46,7 @@ public class MainActivity extends AppCompatActivity {
     public void tellJoke(View view) {
         try {
             String data = new EndpointsAsyncTask().execute(this).get();
+            //TODO remove log
             //Log.d("Anandhi", "Anandhi" + data);
 
             Intent intent = new Intent(this, com.example.androidjokes.JokeActivity.class);
