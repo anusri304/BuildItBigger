@@ -1,2 +1,1 @@
 include ':app', ':backend',':javaJokes',':androidJokes'
-include ':app1'
