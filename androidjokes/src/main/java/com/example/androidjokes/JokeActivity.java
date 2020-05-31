@@ -1,6 +1,5 @@
 package com.example.androidjokes;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
@@ -17,6 +16,7 @@ public class JokeActivity extends AppCompatActivity {
         setContentView(R.layout.activity_joke);
 
         Bundle intent = getIntent().getExtras();
+        // Get the Joke from the App in the intent and display it in the TextView
         if(intent !=null) {
             String joke = intent.getString(ApplicationConstants.JOKE);
             textView = (TextView) findViewById(R.id.textView);

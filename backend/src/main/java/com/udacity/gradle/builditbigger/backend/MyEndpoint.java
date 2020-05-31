@@ -29,6 +29,10 @@ public class MyEndpoint {
         return response;
     }
 
+    /**
+     * Method to fetch joke from the javaJokes library
+     * @return Mybean POJO containing the joke
+     */
     @ApiMethod(name = "sayJoke")
     public MyBean sayJoke() {
         MyBean response = new MyBean();

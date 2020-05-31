@@ -1,7 +1,6 @@
 package com.udacity.gradle.jokes.test;
 
 import com.example.gradle.jokes.Joker;
-
 import org.junit.Test;
 
 public class JokerTest {

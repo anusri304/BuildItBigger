@@ -10,6 +10,10 @@ import com.udacity.gradle.builditbigger.backend.myApi.MyApi;
 
 import java.io.IOException;
 
+/**
+ * This AsyncTask loads joke from the Google Cloud Endpoints Server
+ */
+
 public class EndpointsAsyncTask extends AsyncTask<Context, Void, String> {
     private static MyApi myApiService = null;
     private Context context;
@@ -30,14 +34,13 @@ public class EndpointsAsyncTask extends AsyncTask<Context, Void, String> {
                             abstractGoogleClientRequest.setDisableGZipContent(true);
                         }
                     });
-            // end options for devappserver
-
             myApiService = builder.build();
         }
 
         context = contexts[0];
 
         try {
+            // Invoke GCE to get the joke
             return myApiService.sayJoke().execute().getData();
         } catch (IOException e) {
             return e.getMessage();
