@@ -7,6 +7,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import androidx.fragment.app.Fragment;
+import android.widget.ProgressBar;
 import com.example.androidjokes.utils.ApplicationConstants;
 
 
@@ -16,6 +17,7 @@ import com.example.androidjokes.utils.ApplicationConstants;
 public class MainActivityFragment extends Fragment {
 
     private Button buttonJoke;
+    ProgressBar progressBar;
 
     public MainActivityFragment() {
     }
@@ -27,9 +29,13 @@ public class MainActivityFragment extends Fragment {
 
         buttonJoke = (Button) root.findViewById(R.id.button_joke);
 
+        progressBar = (ProgressBar) root.findViewById(R.id.progressBar);
+        progressBar.setVisibility(View.GONE);
+
         buttonJoke.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                progressBar.setVisibility(View.VISIBLE);
                 launchJokeActivity();
             }
         });
@@ -39,13 +45,11 @@ public class MainActivityFragment extends Fragment {
 
     private void launchJokeActivity() {
         try {
-            String data = new EndpointsAsyncTask().execute(getActivity().getApplicationContext()).get();
+            String data = new EndpointsAsyncTask(progressBar).execute(getActivity().getApplicationContext()).get();
             //TODO remove log
             //Log.d("Anandhi", "Anandhi" + data);
 
-            Intent intent = new Intent(getActivity().getApplicationContext(), com.example.androidjokes.JokeActivity.class);
-            intent.putExtra(ApplicationConstants.JOKE, data);
-            startActivity(intent);
+
         } catch (Exception e) {
             e.printStackTrace();
         }

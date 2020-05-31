@@ -35,7 +35,7 @@ public class AsyncTest  {
     public void clickRecyclerViewItem_AndCheckIntent() throws Exception {
         onView((withId(R.id.button_joke)))
                 .perform(click());
-
+//TODO
         onView((withId(R.id.textView))).check(matches(withText("This is totally a funny joke")));
     }
 
