@@ -25,7 +25,7 @@ public class MainActivityFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-       View root=  inflater.inflate(R.layout.fragment_main, container, false);
+        View root=  inflater.inflate(R.layout.fragment_main, container, false);
 
         buttonJoke = (Button) root.findViewById(R.id.button_joke);
 
@@ -46,10 +46,6 @@ public class MainActivityFragment extends Fragment {
     private void launchJokeActivity() {
         try {
             String data = new EndpointsAsyncTask(progressBar).execute(getActivity().getApplicationContext()).get();
-            //TODO remove log
-            //Log.d("Anandhi", "Anandhi" + data);
-
-
         } catch (Exception e) {
             e.printStackTrace();
         }
