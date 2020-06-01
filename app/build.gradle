@@ -65,6 +65,33 @@ dependencies {
     androidTestImplementation 'androidx.test.ext:junit:1.1.1'
     androidTestImplementation 'androidx.test.espresso:espresso-contrib:3.2.0'
     implementation 'androidx.test.espresso:espresso-idling-resource:3.2.0'
-    implementation'org.hamcrest:hamcrest-core:1.3'
-    testImplementation'junit:junit:4.12'
+    implementation 'org.hamcrest:hamcrest-core:1.3'
+    testImplementation 'junit:junit:4.12'
+}
+
+tasks.register("hello") {
+    doLast {
+        println 'Hello, World!'
+    }
+}
+
+
+task startBackend(dependsOn: ':backend:appengineStart') {
+    doLast {
+        println 'App engine started'
+    }
+}
+task finalTask() {
+    dependsOn 'startBackend'
+    mustRunAfter 'startBackend'
+    dependsOn ':app:connectedAndroidTest'
+
+}
+
+task stopBackend(dependsOn: 'finalTask') {
+    mustRunAfter('finalTask')
+    dependsOn ':backend:appengineStop'
+    doLast {
+        println 'App engine stopped'
+    }
 }
