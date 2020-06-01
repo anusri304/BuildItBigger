@@ -5,6 +5,7 @@ import androidx.test.espresso.IdlingRegistry;
 import androidx.test.espresso.IdlingResource;
 import androidx.test.ext.junit.runners.AndroidJUnit4;
 import androidx.test.rule.ActivityTestRule;
+import com.example.androidjokes.utils.ApplicationConstants;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Rule;
@@ -35,8 +36,7 @@ public class AsyncTest  {
     public void clickRecyclerViewItem_AndCheckIntent() throws Exception {
         onView((withId(R.id.button_joke)))
                 .perform(click());
-//TODO
-        onView((withId(R.id.textView))).check(matches(withText("This is totally a funny joke")));
+        onView((withId(R.id.textView))).check(matches(withText(ApplicationConstants.FUNNY_JOKE)));
     }
 
     @After

@@ -23,12 +23,12 @@ import java.io.IOException;
 public class EndpointsAsyncTask extends AsyncTask<Context, Integer, String> {
     private static MyApi myApiService = null;
     private Context context;
-    int count =0;
+    int count = 0;
     ProgressBar progressBar;
 
-   public EndpointsAsyncTask(ProgressBar progressBar) {
-       this.progressBar = progressBar;
-   }
+    public EndpointsAsyncTask(ProgressBar progressBar) {
+        this.progressBar = progressBar;
+    }
 
     @Override
     protected String doInBackground(Context... contexts) {
@@ -40,14 +40,13 @@ public class EndpointsAsyncTask extends AsyncTask<Context, Integer, String> {
 //                e.printStackTrace();
 //            }
 //        }
-        if(myApiService == null) {  // Only do this once
+        if (myApiService == null) {  // Only do this once
             MyApi.Builder builder = new MyApi.Builder(AndroidHttp.newCompatibleTransport(),
                     new AndroidJsonFactory(), null)
                     // options for running against local devappserver
                     // - 10.0.2.2 is localhost's IP address in Android emulator
                     // - turn off compression when running against local devappserver
-                    //TODO:URL
-                    .setRootUrl("http://10.0.2.2:8080/_ah/api/")
+                    .setRootUrl(com.udacity.gradle.builditbigger.utils.ApplicationConstants.URL)
                     .setGoogleClientRequestInitializer(new GoogleClientRequestInitializer() {
                         @Override
                         public void initialize(AbstractGoogleClientRequest<?> abstractGoogleClientRequest) throws IOException {
@@ -68,20 +67,18 @@ public class EndpointsAsyncTask extends AsyncTask<Context, Integer, String> {
     }
 
 
-
     @Override
     protected void onPostExecute(String result) {
-        Log.d("onPostExecute","onPostExecute" + result);
+        Log.d("onPostExecute", "onPostExecute" + result);
         progressBar.setVisibility(View.GONE);
-        if(!result.contains("failed")) {
+        if (!result.contains("failed")) {
             Intent intent = new Intent(context, com.example.androidjokes.JokeActivity.class);
             intent.putExtra(ApplicationConstants.JOKE, result);
             intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
             Log.d("onPostExecute1", "onPostExecute1");
             context.startActivity(intent);
-        }
-        else {
-            Toast.makeText(context,result,Toast.LENGTH_LONG).show();
+        } else {
+            Toast.makeText(context, result, Toast.LENGTH_LONG).show();
         }
     }
 

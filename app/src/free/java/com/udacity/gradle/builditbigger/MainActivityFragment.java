@@ -94,10 +94,6 @@ public class MainActivityFragment extends Fragment {
     private void launchJokeActivity() {
         try {
             String data = new EndpointsAsyncTask(progressBar).execute(getActivity().getApplicationContext()).get();
-            //TODO remove log
-            //Log.d("Anandhi", "Anandhi" + data);
-
-
         } catch (Exception e) {
             e.printStackTrace();
         }
