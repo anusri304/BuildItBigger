@@ -1,15 +1,12 @@
 package com.udacity.gradle.builditbigger;
 
-import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ProgressBar;
 import androidx.fragment.app.Fragment;
-import com.example.androidjokes.utils.ApplicationConstants;
 import com.google.android.gms.ads.*;
 import com.google.android.gms.ads.initialization.InitializationStatus;
 import com.google.android.gms.ads.initialization.OnInitializationCompleteListener;
@@ -21,7 +18,6 @@ import com.google.android.gms.ads.initialization.OnInitializationCompleteListene
 public class MainActivityFragment extends Fragment {
     private InterstitialAd mInterstitialAd;
 
-    private Button buttonJoke;
 
     private ProgressBar progressBar;
 
@@ -43,7 +39,7 @@ public class MainActivityFragment extends Fragment {
                 .build();
         mAdView.loadAd(adRequest);
 
-        buttonJoke = (Button) root.findViewById(R.id.button_joke);
+        Button buttonJoke = (Button) root.findViewById(R.id.button_joke);
 
         progressBar = (ProgressBar) root.findViewById(R.id.progressBar);
         progressBar.setVisibility(View.GONE);
@@ -52,7 +48,7 @@ public class MainActivityFragment extends Fragment {
             @Override
             public void onClick(View view) {
                 progressBar.setVisibility(View.VISIBLE);
-                tellJoke(view);
+                tellJoke();
             }
         });
 
@@ -70,7 +66,7 @@ public class MainActivityFragment extends Fragment {
     }
 
 
-    public void tellJoke(View view) {
+    public void tellJoke() {
         try {
             if (mInterstitialAd.isLoaded()) {
                 mInterstitialAd.show();
@@ -81,8 +77,6 @@ public class MainActivityFragment extends Fragment {
                     }
                 });
             } else {
-                Log.d("TAG", "The interstitial wasn't loaded yet.");
-
                 launchJokeActivity();
             }
 
@@ -93,7 +87,7 @@ public class MainActivityFragment extends Fragment {
 
     private void launchJokeActivity() {
         try {
-            String data = new EndpointsAsyncTask(progressBar).execute(getActivity().getApplicationContext()).get();
+          new EndpointsAsyncTask(progressBar).execute(getActivity().getApplicationContext()).get();
         } catch (Exception e) {
             e.printStackTrace();
         }

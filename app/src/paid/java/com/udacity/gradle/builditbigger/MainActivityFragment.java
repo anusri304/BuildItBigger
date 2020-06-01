@@ -1,14 +1,12 @@
 package com.udacity.gradle.builditbigger;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import androidx.fragment.app.Fragment;
 import android.widget.ProgressBar;
-import com.example.androidjokes.utils.ApplicationConstants;
+import androidx.fragment.app.Fragment;
 
 
 /**
@@ -16,7 +14,7 @@ import com.example.androidjokes.utils.ApplicationConstants;
  */
 public class MainActivityFragment extends Fragment {
 
-    private Button buttonJoke;
+
     ProgressBar progressBar;
 
     public MainActivityFragment() {
@@ -25,9 +23,9 @@ public class MainActivityFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View root=  inflater.inflate(R.layout.fragment_main, container, false);
+        View root = inflater.inflate(R.layout.fragment_main, container, false);
 
-        buttonJoke = (Button) root.findViewById(R.id.button_joke);
+        Button buttonJoke = (Button) root.findViewById(R.id.button_joke);
 
         progressBar = (ProgressBar) root.findViewById(R.id.progressBar);
         progressBar.setVisibility(View.GONE);
@@ -45,7 +43,7 @@ public class MainActivityFragment extends Fragment {
 
     private void launchJokeActivity() {
         try {
-            String data = new EndpointsAsyncTask(progressBar).execute(getActivity().getApplicationContext()).get();
+            new EndpointsAsyncTask(progressBar).execute(getActivity().getApplicationContext()).get();
         } catch (Exception e) {
             e.printStackTrace();
         }
