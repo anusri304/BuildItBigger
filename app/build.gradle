@@ -69,12 +69,6 @@ dependencies {
     testImplementation 'junit:junit:4.12'
 }
 
-tasks.register("hello") {
-    doLast {
-        println 'Hello, World!'
-    }
-}
-
 
 task startBackend(dependsOn: ':backend:appengineStart') {
     doLast {
